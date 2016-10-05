@@ -15,18 +15,18 @@
         </div>
     </div>   
     
-    <div id="abc" class="container divcenter">
-        <div class="col-lg-6 col-md-6 col-sm-6">
-            <form onsubmit="checkInput('purchase', 'down', 'abc')">
+    <div  class="container divcenter">
+        <div id="abc" class="col-lg-6 col-md-6 col-sm-6">
+            <form>
                 Purchase price
-                <input id="purchase" type="text">
+                <input id="purchase" type="text" value="200000">
                 <br>
                 <br>
                 Down payment
-                <input id="down" type="text">
+                <input id="down" type="text" value="40000">
                 <br>
                 <br>
-                <input type="submit" value="See payment">
+                <a class="btn btn-primary" href="#" onclick="checkInput('purchase', 'down', 'abc')" value="See payment">payment</a>
             </form>
         </div>
         
@@ -35,25 +35,29 @@
    
     
 <script>
-    function checkInput(field1, field2, field3){
-        if( isNaN(document.getElementById(field1).value) 
-           || isNaN(document.getElementById(field2).value)){
+    
+    function checkInput(field1, field2, field3)
+    {
+        if( isNaN(document.getElementById(field1).value)
+         || isNaN(document.getElementById(field2).value))
+        {
            alert("please input a number for both purchase price and down payment!");
-           } 
+         }
        
         
-        var i15 = 0.229%;
-        var i30 = 0.281%;
-        var pur = parseFloat(document.getElementById("field1").value); 
-        var dn = parseFloat(document.getElementById("field2").value);
+        var i15 = 0.00229;
+        var i30 = 0.00281;
+         
+        var pur = parseFloat( document.getElementById(field1).value );
+        var dn = parseFloat( (document.getElementById(field2) .value));
         var prin = pur-dn;
-        
-        var mp15 = prin*i15*pow((1+i15),180)/(pow((1+i15),180)-1);
-        var mp15 = prin*i30*pow((1+i30),360)/(pow((1+i30),360)-1);
-                
 
+        var mp15 = prin*i15*Math.pow((1+i15),180)/(Math.pow((1+i15),180)-1);
+        
+        var mp30 = prin*i30*Math.pow((1+i30),360)/(Math.pow((1+i30),360)-1);
+            
         var tableString = 
-        "<table class="center table table-bordered">
+        `<table class="center table table-bordered table-striped">
         <tr>
             <th></th>
             <th class="center">30yr fixed</th>
@@ -61,28 +65,34 @@
         </tr>
         <tr>
             <th class="center" scope="col">Payment</th>
-            <th class="center">?</th>
-            <th class="center">?</th>
+            <th class="center">`+mp30.toFixed(2)+`</th>
+            <th class="center">`+mp15.toFixed(2)+`</th>
         </tr>
          <tr>
             <th class="center" scope="col">Interest Rate</th>
-            <th class="center" >mp30</th>
-            <th class="center">mp15</th>
+            <th class="center" >`+(i30*100).toFixed(2)+`%</th>
+            <th class="center">`+(i15*100).toFixed(2)+`%</th>
         </tr>
-        </table>";
+        </table>`;
+        var formString = `<form>
+                Purchase price
+                <input id="purchase" type="text">
+                <br>
+                <br>
+                Down payment
+                <input id="down" type="text">
+                <br>
+                <br>
+                <a class="btn btn-primary" href="#" onclick="checkInput('purchase', 'down', 'abc')" value="See payment">payment</a>
+            </form><br><br>`;
         var cont = document.getElementById(field3);
-        cont.innerHTML = tableString;
- }
-    
-   
-   
+        cont.innerHTML = formString + tableString;
+        
+
+         
+     }
+       
 </script>
-    
-    
-    
-
-
-    
 </body>
 
 </html>
