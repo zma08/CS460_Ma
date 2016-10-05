@@ -38,13 +38,13 @@
     
     function checkInput(field1, field2, field3)
     {
-        if( isNaN(document.getElementById(field1).value)
-         || isNaN(document.getElementById(field2).value))
+        if( isNaN(document.getElementById(field1).value) || (document.getElementById(field1).value) === ""
+         || isNaN(document.getElementById(field2).value) || (document.getElementById(field1).value) === "")
         {
            alert("please input a number for both purchase price and down payment!");
          }
        
-        
+        else {
         var i15 = 0.00229;
         var i30 = 0.00281;
          
@@ -57,7 +57,7 @@
         var mp30 = prin*i30*Math.pow((1+i30),360)/(Math.pow((1+i30),360)-1);
             
         var tableString = 
-        `<table class="center table table-bordered table-striped">
+        `<table class="center table table-bordered table-striped table-hover">
         <tr>
             <th></th>
             <th class="center">30yr fixed</th>
@@ -87,7 +87,7 @@
             </form><br><br>`;
         var cont = document.getElementById(field3);
         cont.innerHTML = formString + tableString;
-        
+        }
 
          
      }
