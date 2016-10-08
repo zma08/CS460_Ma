@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>mortgage calculator</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+   
+    
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div id="head" class="col-lg-12 col-md-12 h2">
+                Monthly Mortgage Payment Calculator
+            </div>
+        </div>
+    </div>   
+    
+   <div  class="container divcenter">
+        <div id="abc" class="col-lg-6 col-md-6 col-sm-6">
+            <form>
+                Purchase price
+                <input id="purchase" type="text" value="200000">
+                <br>
+                <br>
+                Down payment
+                <input id="down" type="text" value="40000">
+                <br>
+                <br>
+                Term:
+                <input type="radio" name="rate" checked="checked" value="15">15yr
+                <input type="radio" name="rate" value="30">30yr
+                <br>
+                <br>
+                <a href="#" id="sub" type="submit" class="btn btn-md btn-danger" >payment</a>
+                <br>
+                <br>
+                <div id="blank"></div>
+            </form>
+        </div>
+        
+    </div>
+    
+    
+      <script type="text/javascript" src="jquery-3.1.1.js"></script>  
+      <script type="text/javascript" src="myJquery.js"></script>
+</body>
+
+</html>

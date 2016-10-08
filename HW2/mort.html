@@ -19,22 +19,22 @@
         <div id="abc" class="col-lg-6 col-md-6 col-sm-6">
             <form>
                 Purchase price
-                <input id="purchase" type="text" value="200000">
+                <input id="purchase" type="text" >
                 <br>
                 <br>
                 Down payment
-                <input id="down" type="text" value="40000">
+                <input id="down" type="text">
                 <br>
                 <br>
-                <a class="btn btn-primary" href="#" onclick="checkInput('purchase', 'down', 'abc')" value="See payment">payment</a>
+                <a class="btn btn-primary" href="#" onclick="checkInput('purchase', 'down', 'abc')" value="payment">payment</a>
             </form>
         </div>
         
     </div>
     
    
-    
-<script>
+        
+ <script>   
     
     function checkInput(field1, field2, field3)
     {
@@ -45,11 +45,11 @@
          }
        
         else {
-        var i15 = 0.00229;
+        
         var i30 = 0.00281;
-         
+        var i15 = 0.00229; 
         var pur = parseFloat( document.getElementById(field1).value );
-        var dn = parseFloat( (document.getElementById(field2) .value));
+        var dn = parseFloat( document.getElementById(field2) .value);
         var prin = pur-dn;
 
         var mp15 = prin*i15*Math.pow((1+i15),180)/(Math.pow((1+i15),180)-1);
@@ -92,6 +92,7 @@
          
      }
        
+   
 </script>
 </body>
 
