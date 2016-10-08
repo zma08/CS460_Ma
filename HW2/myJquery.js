@@ -21,7 +21,7 @@ function cal(){
                 </tr>
                 <tr>
                     <th scope="row">Payment</th>
-                    <td class="center">`+payment.toFixed(2)+`</td>
+                    <td class="center">$`+payment.toFixed(2)+`</td>
                 </tr>  
                 <tr>
                     <th scope="row">Interest Rate</th>
