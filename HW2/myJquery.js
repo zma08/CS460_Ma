@@ -8,8 +8,8 @@ function cal(){
         var prin = pur - dn;
         var n = parseFloat($("input[type='radio']:checked").val());
         alert("You selected "+n+" year fixed");
-        var r=checkRate(n);
-        alert("Your rate is "+r);
+        var r= checkRate(n) ;
+        alert("Your rate is "+(r*100).toFixed(2)+"%");
         var payment = prin*(r/12)*( Math.pow( (1+r/12),n*12) )/((Math.pow((1+r/12),n*12))-1);
         
         var tableString = `
