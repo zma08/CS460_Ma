@@ -7,9 +7,9 @@ function cal(){
         var pur = parseFloat($("#purchase").val());
         var prin = pur - dn;
         var n = parseFloat($("input[type='radio']:checked").val());
-        alert("You selected "+n+" year fixed");
+        //alert("You selected "+n+" year fixed");
         var r= checkRate(n) ;
-        alert("Your rate is "+(r*100).toFixed(2)+"%");
+        //alert("Your rate is "+(r*100).toFixed(2)+"%");
         var payment = prin*(r/12)*( Math.pow( (1+r/12),n*12) )/((Math.pow((1+r/12),n*12))-1);
         
         var tableString = `
@@ -44,10 +44,25 @@ function checkRate(field){
     return r;
     
 }
+
+
+
+$("input[type='radio']").click(function(){
+        $("#termString").html("<span class='red1'>Loan term selected: "+  parseFloat($("input[type='radio']:checked").val())+" years</span>");});
+
+
+
 $("#sub").click(function(){
+                          
+                          if( $("input[type='radio']:checked").length>0)
+                          {
                           $("#head").html("Your Payment below").css("background-color","grey");  
                           $("div#blank").empty();
                           cal();   
                           $("<a id='set' href='https://www.bankofamerica.com/mortgage/home-mortgage/' target='_blank'>need more info? click me.</a>").appendTo("div#blank");
-                          });
+                          }
+                          else{
+                              alert("Select a loan term Please...");
+                          } });
+                          
 

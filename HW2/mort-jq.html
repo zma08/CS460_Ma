@@ -20,7 +20,7 @@
     
    <div  class="container divcenter">
         <div id="abc" class="col-lg-6 col-md-6 col-sm-6">
-            <form>
+            
                 Purchase price: $
                 <input id="purchase" type="text" value="200000">
                 <br>
@@ -30,15 +30,20 @@
                 <br>
                 <br>
                 Term:
-                <input type="radio" name="rate" checked="checked" value="15">15yr
-                <input type="radio" name="rate" value="30">30yr
+                <input type="radio" name="rate"  value="15">15yr
+                <input type="radio"  name="rate" value="30">30yr
                 <br>
                 <br>
-                <a href="#" id="sub" type="submit" class="btn btn-md btn-danger" >payment</a>
+                <div id="termString">
+                </div>
+                
+                <br>
+                <br>
+                <input id="sub" type="submit" value ="payment" class="btn btn-md btn-danger" >
                 <br>
                 <br>
                 <div id="blank"></div>
-            </form>
+            
         </div>
         
     </div>
