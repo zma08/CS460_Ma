@@ -47,7 +47,7 @@ function checkRate(field){
 
 
 
-$("input[type='radio']").click(function(){
+$("input[type='radio']").click(function(){ 
         $("#termString").html("<span class='red1'>confirm:<br/>Loan term: "+parseFloat($("input[type='radio']:checked").val())+" years.<br/>Purchase Price: $"+$("#purchase").val()+"<br/> Down Payment: $"+$("#down").val()+"</span>");});
 
 
