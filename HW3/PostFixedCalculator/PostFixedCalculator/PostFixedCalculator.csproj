@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EC52B10F-203F-4642-BB01-AAEFAA4ED0CF}</ProjectGuid>
+    <ProjectGuid>{43BDC002-1490-4D70-A102-FCA561381012}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Rewrite</RootNamespace>
-    <AssemblyName>Rewrite</AssemblyName>
+    <RootNamespace>PostFixedCalculator</RootNamespace>
+    <AssemblyName>PostFixedCalculator</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
