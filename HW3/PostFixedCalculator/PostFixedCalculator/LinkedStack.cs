@@ -16,7 +16,7 @@ namespace PostFixedCalculator
             top = null;
         }
 
-        public bool isEmpty()
+        public  bool isEmpty()
         {
             return (top == null ? true : false);
         }
