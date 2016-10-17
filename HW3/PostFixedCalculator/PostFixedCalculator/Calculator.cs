@@ -35,7 +35,7 @@ namespace PostFixedCalculator
             {
                 output = e.Message;
             }
-            Console.WriteLine("\n\t{0}={1}", input, output);
+            Console.WriteLine("\n\t>>>{0} = {1}", input, output);
             return true;
         }
 
@@ -65,7 +65,7 @@ namespace PostFixedCalculator
                     a = Convert.ToDouble(stack.pop() );//if there is number in stack pop it up
                     if (stack.isEmpty()) { throw new ArgumentException(); }//we at least need to 2 number in the stack to operated or throw
                     b = Convert.ToDouble(stack.pop() );//pop the second number
-                    stack.push(toCal(a, b, test));//do the calculation and push it back to the stack and repeat
+                    stack.push(toCal(b, a, test));//do the calculation and push it back to the stack and repeat
                    
                 }
 
@@ -90,7 +90,7 @@ namespace PostFixedCalculator
                 }
 
             }
-            else { throw new ArgumentException("{0} is not allowed",c); }
+            else { throw new ArgumentException("improper input "+c+" is not one of + - * /"); }
             return s;
         }
     }
