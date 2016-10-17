@@ -21,12 +21,12 @@ namespace PostFixedCalculator
             return (top == null ? true : false);
         }
 
-        public object peek()
+        public Object peek()
         {
             return (isEmpty() ? null : top.data);
         }
 
-        public object pop()
+        public Object pop()
         {
             if (top == null) { return null; }
             Object item = top.data;
@@ -34,7 +34,7 @@ namespace PostFixedCalculator
             return item;
         }
 
-        public object push(object newItem)
+        public Object push(Object newItem)
         {
             if (newItem == null) { return null; }
             Node aNode = new Node(newItem, top);
