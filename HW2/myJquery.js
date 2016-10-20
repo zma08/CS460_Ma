@@ -29,7 +29,7 @@ function cal(){
                 </tr> 
             </table>`
         
-        $("#blank").append(tableString);
+        $("#blank").append(tableString);;
     }
 }
                             
