@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Task1";
+}
+
+<h2>Task1</h2>
+<body>
+<div class="col-12-lg col-12-sm">
+    <form method="get" class="form-control:focus">
+        <fieldset>
+            <legend>Personal Info</legend>
+            <label for="fName">First Name:</label>
+            <input type="text" name="fName" value=""><br><br>
+            <label for="age">Age:</label>
+            <input type="text" name="age" value=""><br><br>
+            <input class="btn btn-success indent0" type="submit" value="submit">
+        </fieldset>
+    </form>
+    <br><br>
+</div>
+    
+    <div class="col-12-lg col-12-sm">
+        <p class="strong">@ViewBag.message</p>
+    </div>
+</body>

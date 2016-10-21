@@ -1,0 +1,20 @@
+﻿@using System.Web.UI.HtmlControls
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Welcome</h2>
+
+
+<ul class="jumbotron">
+    <li>
+        @Html.ActionLink("Task 1", "Task1","Home")
+    </li>
+    <li>
+        @Html.ActionLink("Taske 2", "Task2","Home")
+    </li>
+    <li>
+        @Html.ActionLink("Loan Calculator","Loan", "Home")
+    </li>
+</ul>
