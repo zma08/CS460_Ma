@@ -5,3 +5,16 @@
 
 <h2>Task2</h2>
 
+<form method="post">
+    <fieldset>
+        <legend>Personal Info</legend>
+        <label for="Name">Name:</label>
+        <input type="text" name="Name">
+        <br><br>
+        <label for="Employed">Emplyed:</label>
+        <input type="text" name="Employed"value="yes/no">
+        <br><br>
+        <input type="submit"class="btn btn-success"value="submit">
+    </fieldset>
+    @ViewBag.Message@*display the message from server*@
+</form>
