@@ -1,7 +1,35 @@
-﻿
+﻿@model AshLoan.Models.Calculator
+
 @{
-    ViewBag.Title = "Loan";
+    Layout = null;
 }
 
-<h2>Loan</h2>
+<!DOCTYPE html>
 
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Loan</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+</head>
+<body>
+<div class="h2 container jumbotron"> Car Loan Calculator</div>
+<div class="container col-12-lg col-12-sm">
+    @*use lambda expression to set up the input text box and the property of the Object and key/name/id of the input will be binded*@
+    @using (Html.BeginForm())
+    {
+        @*this is the validation summery, that if first time load the page it will be hidden and if the validation falls through then error will be shown*@
+        @Html.ValidationSummary()
+        @*This will be equal to <input id="pr" name="pr" type="text" value=" /"> *@
+        <label>Principal ($)@Html.TextBoxFor(x => x.pr)</label>
+       
+        <br/><br/>
+        <label>Rate (%)@Html.TextBoxFor(x => x.rate)</label><br/><br/>
+        <label>Term (Months)@Html.TextBoxFor(x => x.term)</label><br/><br/>
+        <input class="btn btn-danger" type="submit" value="Calculate"/>
+    }
+
+</div>
+</body>
+</html>

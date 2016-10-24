@@ -1,0 +1,42 @@
+﻿@*import the model in order to use the calculator property*@
+@model AshLoan.Models.Calculator
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Result</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+</head>
+<body>
+@*Math calculation to get a monthly payment;*@
+@{
+    double r = Model.rate/1200;
+    double principal = Model.pr;
+    int n = Model.term;
+    double payment = Math.Round(principal*r*(Math.Pow((1 + r), n))/(Math.Pow((1 + r), n) - 1), 2);
+    double total = Math.Round(n*payment, 2);
+}
+<div class="container jumbotron h1">Monthly Payment & Total Cost</div>
+<div class="container">
+    <div class="col-lg-6 col-md-6 col-sm-6">
+        <p class="h2 strong">Total cost($)</p><br/>
+        <p class="h3 strong">@total</p>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6">
+
+        <p class="h2 strong">Payment/Month($)</p><br/>
+        <p class="h3 strong">@payment</p>
+    </div>
+
+
+</div>
+<hr/>
+</body>
+</html>

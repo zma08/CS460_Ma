@@ -15,7 +15,7 @@ namespace AshLoan
 
             routes.MapRoute(
                name: "Home",
-               url: "Home/",
+               url: "Home/asher",
                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
            );
 
