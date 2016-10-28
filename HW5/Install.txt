@@ -1,0 +1,10 @@
+Entity Framework needs to be installed my version:6.1.3/latest version at this momoent, a relational Object mapper will bring data from database and gives as a object to be used in c#
+
+Seed Folder has been loaded which is .csv file, takes sample of data, seperator with "," "/n"
+
+initDB.sql this file been loaded, has t-sql to create a database and table to serve this project
+initDB.bat this file been loaded, this script file will be executed at the cmd, then the database will be initialized at the first time run this project
+
+After database initialized, a correct connectionstring needs to be written in web.cofig file 
+
+DbContext class is the Data access layer which will be used passing data<=>Object(list)

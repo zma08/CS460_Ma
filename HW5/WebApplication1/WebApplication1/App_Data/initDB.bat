@@ -1,6 +1,6 @@
 @ECHO off
-SET DBFILENAME=Student.mdf
-SET DBLOGFILENAME=Student_log.ldf
+SET DBFILENAME=Record.mdf
+SET DBLOGFILENAME=Record_log.ldf
 SET INITSCRIPT=initDB.sql
 
 REM If db and db files already exist, detach them first in Visual Studio Server Explorer

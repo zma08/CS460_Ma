@@ -2,24 +2,24 @@
 --    follow naming convention: "Users" table contains rows that are each "User" objects
 
 -- ***********  Attach ***********
-CREATE DATABASE [Student] ON
-PRIMARY (NAME=[Student], FILENAME='$(dbdir)\Student.mdf')
-LOG ON (NAME=[Student_log], FILENAME='$(dbdir)\Student_log.ldf');
+CREATE DATABASE [Record] ON
+PRIMARY (NAME=[Record], FILENAME='$(dbdir)\Record.mdf')
+LOG ON (NAME=[Record_log], FILENAME='$(dbdir)\Record_log.ldf');
 --FOR ATTACH;
 GO
 
-USE [Student];
+USE [Record];
 GO
 
 -- *********** Drop Tables ***********
 
-IF OBJECT_ID('dbo.Student','U') IS NOT NULL
-	DROP TABLE [dbo].[Student];
+IF OBJECT_ID('dbo.Students','U') IS NOT NULL
+	DROP TABLE [dbo].[Students];
 GO
 
 
--- ########### Users ###########
-CREATE TABLE [dbo].[Student]
+-- ########### Students ###########
+CREATE TABLE [dbo].[Students]
 (
 	[ID] INT IDENTITY (1,1) NOT NULL,
 
@@ -32,10 +32,10 @@ CREATE TABLE [dbo].[Student]
 	[Major] NVARCHAR (50) NOT NULL,
 	[Minor] NVARCHAR (50) NOT NULL,
 	[Advisor] NVARCHAR (50) NOT NULL,
-	CONSTRAINT [PK_dbo.Student] PRIMARY KEY CLUSTERED ([ID] ASC)
+	CONSTRAINT [PK_dbo.Students] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 
-BULK INSERT [dbo].[Student]
+BULK INSERT [dbo].[Students]
 	FROM '$(dbdir)\SeedData\Students.csv'		-- VN,FirstName,LastName,Date,Email,PhoneNumber,Major,Minor,Advisor
 	WITH
 	(
@@ -49,7 +49,7 @@ GO
 USE master;
 GO
 
-ALTER DATABASE [Student] SET SINGLE_USER WITH ROLLBACK IMMEDIATE
+ALTER DATABASE [Record] SET SINGLE_USER WITH ROLLBACK IMMEDIATE
 GO
 
-EXEC sp_detach_db 'Student', 'true'
+EXEC sp_detach_db 'Record', 'true'
