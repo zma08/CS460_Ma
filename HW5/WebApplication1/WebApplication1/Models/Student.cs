@@ -6,18 +6,20 @@ using System.Web;
 
 namespace WebApplication1.Models
 {
-    public class Students
+    public class Student
     {
+        [Required][Key][Display(Name = "ID")]
+        public int ID { get; set; }
+        [Required][Display(Name = "VNumber")]
+        public string VNumber { get; set; }
         [Required]
-        public int VNumber { get; set; }
-        [Required]
-        [Display (Name = "First Nmae:")]
-        public string firstN { get; set; }
+        [Display (Name = "First Name:")]
+        public string FirstName { get; set; }
         [Required]
         [Display (Name = "Last Name")]
-        public string LastN { get; set; }
+        public string LastName { get; set; }
         [Required]
-        [Display(Name = "Date Name")]
+        [Display(Name = "Date")]
         public string Date { get; set; }
         [Required]
         [Display(Name = "Phone Number")]

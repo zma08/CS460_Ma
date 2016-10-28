@@ -1,3 +1,34 @@
-﻿<h1>Records shows up here!</h1>
+﻿@model IEnumerable<WebApplication1.Models.Student>  
 
 
+<h2>ShowRecord</h2>
+
+<table class="table table-striped">
+    <tr>
+        <th>@Html.LabelFor(model=>model.FirstOrDefault().VNumber)</th>
+        <th>@Html.LabelFor(model => model.FirstOrDefault().FirstName)</th>
+        <th>@Html.LabelFor(model => model.FirstOrDefault().LastName)</th>
+        <th>@Html.LabelFor(model=>model.FirstOrDefault().Date)</th>
+        <th>@Html.LabelFor(model=>model.FirstOrDefault().PhoneNumber)</th>
+        <th>@Html.LabelFor(model=>model.FirstOrDefault().Email)</th>
+        <th>@Html.LabelFor(model=>model.FirstOrDefault().Major)</th>
+        <th>@Html.LabelFor(model=>model.FirstOrDefault().Minor)</th>
+        <th>@Html.LabelFor(model=>model.FirstOrDefault().Advisor)</th>
+    </tr>
+    
+    @foreach (var i in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(model => i.VNumber)</td>
+            <td>@Html.DisplayFor(model => i.FirstName)</td>
+            <td>@Html.DisplayFor(model => i.LastName)</td>
+            <td>@Html.DisplayFor(model => i.Date)</td>
+            <td>@Html.DisplayFor(model => i.PhoneNumber)</td>
+            <td>@Html.DisplayFor(model => i.Email)</td>
+            <td>@Html.DisplayFor(model => i.Major)</td>
+            <td>@Html.DisplayFor(model => i.Minor)</td>
+            <td>@Html.DisplayFor(model => i.Advisor)</td>
+        </tr>
+    }
+
+</table>
