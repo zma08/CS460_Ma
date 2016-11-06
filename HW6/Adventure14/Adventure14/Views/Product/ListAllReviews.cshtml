@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Adventure14.Models.ProductReview>
+
+@{
+    ViewBag.Title = "ListAllReviews";
+}
+
+<h2>ListAllReviews</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Product.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReviewerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReviewDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rating)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comments)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ModifiedDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReviewerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReviewDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmailAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rating)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Comments)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ModifiedDate)
+        </td>
+       
+    </tr>
+   
+}
+    <p>@Html.ActionLink("Back to Home Page", "Index")</p>
+</table>
