@@ -63,6 +63,24 @@ namespace Adventure14.Controllers
             return View(db.ProductReviews.ToList());
         }
 
+        public ActionResult ProductDetai(int? id, int? Mid)
+        {
+            if (id==null||Mid==null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            else
+            {
+                var vm = new ProductDescriptionViewModel();
+                var description = db.ProductModelProductDescriptionCultures.Where(pk => pk.ProductModelID == Mid).FirstOrDefault().ProductDescription;
+                var Photo = db.ProductProductPhotoes.Where(x => x.ProductID == id).SingleOrDefault().ProductPhoto;
+                vm.ProductDescription = description;
+                vm.ProductPhoto = Photo;
+                
+                return View(vm);
+            }
+        }
+
        /* public ActionResult Add()
         {
             return View();

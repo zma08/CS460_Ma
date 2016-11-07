@@ -138,6 +138,7 @@
     <Compile Include="Models\ProductCategory.cs" />
     <Compile Include="Models\ProductCostHistory.cs" />
     <Compile Include="Models\ProductDescription.cs" />
+    <Compile Include="Models\ProductDescriptionViewModel.cs" />
     <Compile Include="Models\ProductDocument.cs" />
     <Compile Include="Models\ProductInventory.cs" />
     <Compile Include="Models\ProductListPriceHistory.cs" />
@@ -170,6 +171,7 @@
     <Content Include="Views\Product\Add.cshtml" />
     <Content Include="Views\Product\Show.cshtml" />
     <Content Include="Views\Product\ListAllReviews.cshtml" />
+    <Content Include="Views\Product\ProductDetai.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

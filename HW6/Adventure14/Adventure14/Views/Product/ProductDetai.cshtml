@@ -1,0 +1,55 @@
+﻿@model Adventure14.Models.ProductDescriptionViewModel
+
+@{
+    ViewBag.Title = "ProductDetai";
+}
+
+
+<h2>ProductDetai</h2>
+
+<div>
+    <h4>ProductDescription</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductDescription.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductDescription.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductDescription.rowguid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductDescription.rowguid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductDescription.ModifiedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductDescription.ModifiedDate)
+        </dd>
+
+        <dt>
+            Product Photo
+        </dt>
+
+        <dd>
+            @{
+                string str = Convert.ToBase64String(Model.ProductPhoto.LargePhoto);
+                string imgstr = String.Format("data:/img/gif;base64,{0}", str);
+            }
+            <img src="@imgstr" />
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
