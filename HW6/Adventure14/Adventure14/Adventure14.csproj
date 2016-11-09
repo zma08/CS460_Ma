@@ -171,7 +171,9 @@
     <Content Include="Views\Product\Add.cshtml" />
     <Content Include="Views\Product\Show.cshtml" />
     <Content Include="Views\Product\ListAllReviews.cshtml" />
-    <Content Include="Views\Product\ProductDetai.cshtml" />
+    <Content Include="Views\Product\ProductDetail.cshtml" />
+    <Content Include="Views\Product\DeleteCategory.cshtml" />
+    <Content Include="Views\Product\Reviews.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

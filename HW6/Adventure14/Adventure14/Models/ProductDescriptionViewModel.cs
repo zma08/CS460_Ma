@@ -9,5 +9,6 @@ namespace Adventure14.Models
     {
         public ProductDescription ProductDescription { get; set; }
         public ProductPhoto ProductPhoto { get; set; }
+        public Product Product { get; set; }
     }
 }

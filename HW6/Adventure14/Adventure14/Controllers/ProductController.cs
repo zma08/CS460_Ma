@@ -58,12 +58,29 @@ namespace Adventure14.Controllers
            
 
         }
+        public ActionResult Reviews(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            else
+            {
+                var r = db.ProductReviews.Where(x => x.ProductID == id).ToList();
+                if (r.Count==0)
+                {
+                    ViewBag.message = "Sorry there is currently no review for this product...";
+                }
+                return View(r);
+            }
+
+        }
         public ActionResult ListAllReviews()
         {
             return View(db.ProductReviews.ToList());
         }
 
-        public ActionResult ProductDetai(int? id, int? Mid)
+        public ActionResult ProductDetail(int? id, int? Mid)
         {
             if (id==null||Mid==null)
             {
@@ -74,13 +91,23 @@ namespace Adventure14.Controllers
                 var vm = new ProductDescriptionViewModel();
                 var description = db.ProductModelProductDescriptionCultures.Where(pk => pk.ProductModelID == Mid).FirstOrDefault().ProductDescription;
                 var Photo = db.ProductProductPhotoes.Where(x => x.ProductID == id).SingleOrDefault().ProductPhoto;
+                var product = db.Products.Where(x => x.ProductID == id).FirstOrDefault();
                 vm.ProductDescription = description;
                 vm.ProductPhoto = Photo;
-                
+                vm.Product = product;
                 return View(vm);
             }
         }
 
+        public ActionResult DeleteCategory(string Name)
+        {
+           ProductCategory productCategory = db.ProductCategories.Where(x => x.Name.Equals(Name)).FirstOrDefault();
+            db.ProductCategories.Remove(productCategory);
+            db.SaveChanges();
+            return View(db.ProductCategories.ToList());
+        }
+
+      
        /* public ActionResult Add()
         {
             return View();

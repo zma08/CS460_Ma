@@ -15,7 +15,9 @@ namespace Adventure14.Models
 
         [Required]
         [StringLength(50)]
+        //[Column (TypeName = "DateTime2")]
         public string ReviewerName { get; set; }
+
 
         public DateTime ReviewDate { get; set; }
 
@@ -23,12 +25,13 @@ namespace Adventure14.Models
         [StringLength(50)]
         public string EmailAddress { get; set; }
 
+        
         public int Rating { get; set; }
 
         [StringLength(3850)]
         public string Comments { get; set; }
 
-        public DateTime ModifiedDate { get; set; }
+        public DateTime? ModifiedDate { get; set; }
 
         public virtual Product Product { get; set; }
     }

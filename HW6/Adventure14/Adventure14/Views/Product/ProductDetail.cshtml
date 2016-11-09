@@ -1,0 +1,42 @@
+﻿@model Adventure14.Models.ProductDescriptionViewModel
+
+@{
+    ViewBag.Title = "ProductDetail";
+}
+
+
+<h2>ProductDetail</h2>
+
+<div>
+    <h4>ProductDescription</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dd>
+            @{
+                string str = Convert.ToBase64String(Model.ProductPhoto.LargePhoto);
+                string imgstr = String.Format("data:/img/gif;base64,{0}", str);
+            }
+            <div><img src="@imgstr" class="col-sm-12 col-md-12 col-lg-12" /></div>
+        </dd>
+        <br />
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductDescription.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductDescription.Description)
+        </dd>
+
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Write a review", "Review", new { id = Model.Product.ProductID}, new { @class = "btn btn-danger" })
+</p>
+<br/>
+
+<p>@Html.ActionLink("Reviews","Reviews", new {id=Model.Product.ProductID}, new {@class="btn btn-success"})</p>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
+

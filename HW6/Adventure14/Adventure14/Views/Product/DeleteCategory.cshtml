@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Adventure14.Models.ProductCategory>
+
+@{
+    ViewBag.Title = "DeleteCategory";
+}
+
+<h2>DeleteCategory</h2>
+
+<p>
+    @Html.ActionLink("Back to Home", "Index")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.rowguid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ModifiedDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.rowguid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ModifiedDate)
+        </td>
+       
+    </tr>
+}
+
+</table>
