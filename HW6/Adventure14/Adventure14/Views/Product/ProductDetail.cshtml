@@ -10,15 +10,16 @@
 <div>
     <h4>ProductDescription</h4>
     <hr />
+    <div class="container">
+        @{
+            string str = Convert.ToBase64String(Model.ProductPhoto.LargePhoto);
+            string imgstr = String.Format("data:/img/gif;base64,{0}", str);
+        }
+        <div><img src="@imgstr" class="col-sm-12 col-md-12 col-lg-12" /></div>
+    </div>
+    <br/>
     <dl class="dl-horizontal">
-        <dd>
-            @{
-                string str = Convert.ToBase64String(Model.ProductPhoto.LargePhoto);
-                string imgstr = String.Format("data:/img/gif;base64,{0}", str);
-            }
-            <div><img src="@imgstr" class="col-sm-12 col-md-12 col-lg-12" /></div>
-        </dd>
-        <br />
+        
         <dt>
             @Html.DisplayNameFor(model => model.ProductDescription.Description)
         </dt>
@@ -26,16 +27,16 @@
         <dd>
             @Html.DisplayFor(model => model.ProductDescription.Description)
         </dd>
-
-
+        
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Write a review", "Review", new { id = Model.Product.ProductID}, new { @class = "btn btn-danger" })
+    @Html.ActionLink("Write a review", "Review", new { id = Model.Product.ProductID }, new { @class = "btn btn-danger" })
+    @Html.ActionLink("Reviews", "Reviews", new { id = Model.Product.ProductID }, new { @class = "btn btn-success" })
 </p>
 <br/>
 
-<p>@Html.ActionLink("Reviews","Reviews", new {id=Model.Product.ProductID}, new {@class="btn btn-success"})</p>
+
 <p>
     @Html.ActionLink("Back to List", "Index")
 </p>
