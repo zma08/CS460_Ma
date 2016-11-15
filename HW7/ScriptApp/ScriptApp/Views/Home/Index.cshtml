@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    @{
+        ViewBag.Title = "Research Stocks";
+    }
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <h2>Research Stocks</h2>
+
+<form id="sform">
+    <label for="stockT">Type a stock symbol</label>
+    <br />
+    <input id="ticker" type="text" name="Name" />
+    <br />
+    <br />
+    <input id="research" value="View Chart" type="submit" class="btn btn-success btn-sm">
+    <input id="browse" value="History Data" type="submit" class="btn btn-success btn-sm">
+</form><hr/><br/>
+        
+<div class="container">
+    <div id="show" class="col-lg-12 col-md-12 col-xs-12" style="width: 700px; height: 500px;"></div>
+</div>
+
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/MyJavaScript.js"></script>
+    <script src="~/Scripts/dygraph-combined.js"></script>
+  
+</body>
+
+</html>
+
+
+
+
+
+
+

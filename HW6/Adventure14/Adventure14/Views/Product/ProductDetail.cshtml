@@ -25,6 +25,12 @@
         </dt>
 
         <dd>
+            @{
+                if (Model.ProductDescription == null)
+                {
+                   <p class="text-danger">There is no description for this Item yet</p>
+                }
+            }
             @Html.DisplayFor(model => model.ProductDescription.Description)
         </dd>
         

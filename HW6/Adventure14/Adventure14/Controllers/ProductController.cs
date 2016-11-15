@@ -89,7 +89,14 @@ namespace Adventure14.Controllers
             else
             {
                 var vm = new ProductDescriptionViewModel();
-                var description = db.ProductModelProductDescriptionCultures.Where(pk => pk.ProductModelID == Mid).FirstOrDefault().ProductDescription;
+                ProductDescription description = new ProductDescription();
+                if (db.ProductModelProductDescriptionCultures.Where(pk => pk.ProductModelID == Mid).FirstOrDefault() ==
+                    null) description = null;
+                else
+                {
+                    description = db.ProductModelProductDescriptionCultures.Where(pk => pk.ProductModelID == Mid).FirstOrDefault().ProductDescription;
+
+                }
                 var Photo = db.ProductProductPhotoes.Where(x => x.ProductID == id).SingleOrDefault().ProductPhoto;
                 var product = db.Products.Where(x => x.ProductID == id).FirstOrDefault();
                 vm.ProductDescription = description;
