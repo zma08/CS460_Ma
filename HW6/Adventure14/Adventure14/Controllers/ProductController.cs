@@ -7,7 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Adventure14.Models;
-
+using PagedList;
+using PagedList.Mvc;
 namespace Adventure14.Controllers
 {
     public class ProductController : Controller
@@ -19,7 +20,7 @@ namespace Adventure14.Controllers
             
             return View(db.ProductCategories.ToList());
         }
-        public ActionResult ProductItem(int? id)
+        public ActionResult ProductItem(int? id, int? page)
         {
             if (id==null)
             {
@@ -27,7 +28,9 @@ namespace Adventure14.Controllers
             }
             else
             {
-                return View(db.Products.Where(pk => pk.ProductSubcategoryID == id).ToList());
+                //download the pagelist.mvc, it will help to generate the page in a better format
+                return View(db.Products.Where(pk => pk.ProductSubcategoryID == id).
+                    ToList().ToPagedList(page??1,6));//double ? if it is null then page will take defual value as 1, the 2nd parameter set 3 which is page size, like there will be 3 rows displayed in that page
             }
            
         }

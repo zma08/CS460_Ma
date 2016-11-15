@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Adventure14.Models.Product>
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<Adventure14.Models.Product>
 
 @{
     ViewBag.Title = "ProductItem";
@@ -13,96 +15,83 @@
 <table class="table">
     <tr>
 
-        <th>
-            Picture
-        </th>
+            <th>
+                Picture
+            </th>
 
-        <th>
-            Subcategory
-        </th>
+           
 
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-
-
-
-        <th>
-            @Html.DisplayNameFor(model => model.Color)
-        </th>
-
-
-
-        <th>
-            @Html.DisplayNameFor(model => model.ListPrice)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Size)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Weight)
-        </th>
-
-
-
-        <th>
-            @Html.DisplayNameFor(model => model.Style)
-        </th>
-
-
-
-        <th></th>
-    </tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Color)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().ListPrice)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Size)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Weight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Style)
+            </th>*@
+        </tr>
 
     @foreach (var item in Model)
     {
-      
-            <tr>
-                
-                    <td>
-                        @{
-                            var str = Convert.ToBase64String(item.ProductProductPhotoes.SingleOrDefault().ProductPhoto.ThumbNailPhoto);
-                            var imgsrc = string.Format("data:img/gif; base64,{0}", str);
-                        }
-                       
-              
-                <a href="@Url.Action("ProductDetail","Product",new {id = item.ProductID, Mid = item.ProductModelID,})">
-                    <img src="@Url.Content(@imgsrc)" />
-                    </a>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ProductSubcategory.Name)
-                        </td>
 
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Name)
-                        </td>
+        <tr>
+
+            <td>
+            @{
+                var str = Convert.ToBase64String(item.ProductProductPhotoes.SingleOrDefault().ProductPhoto.ThumbNailPhoto);
+                var imgsrc = string.Format("data:img/gif; base64,{0}", str);
+            }
 
 
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Color)
-                        </td>
+            <a href="@Url.Action("ProductDetail","Product",new {id = item.ProductID, Mid = item.ProductModelID,})">
+                <img src="@Url.Content(@imgsrc)" />
+            </a>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.ProductSubcategory.Name)
+            </td>*@
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Color)
+            </td>
 
 
 
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ListPrice)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Size)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Weight)
-                        </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ListPrice)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Size)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Weight)
+            </td>
 
 
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Style)
-                        </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Style)
+            </td>*@
 
 
 
         </tr>
 
-                        }
+    }
 
 </table>
+
+@Html.PagedListPager(Model, page=>Url.Action("ProductItem", new {page}))
