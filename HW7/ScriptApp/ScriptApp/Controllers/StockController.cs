@@ -90,7 +90,7 @@ namespace ScriptApp.Controllers
                 //object initializer to create object with the data in the array and add all object to the InfoList
                 StockInfo si = new StockInfo
                 {
-                    Date = listItem[0].ToString(),// Debug.Write(listItem[0]);
+                    Date = listItem[0],// Debug.Write(listItem[0]);
                     Open = Convert.ToDecimal(listItem[1]), // Debug.Write(listItem[1]);
                     High = Convert.ToDecimal(listItem[2]), //Debug.Write(listItem[2]);
                     Low = Convert.ToDecimal(listItem[3]), // Debug.Write(listItem[3]);

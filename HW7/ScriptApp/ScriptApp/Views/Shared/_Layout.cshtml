@@ -34,8 +34,9 @@
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/Scripts/MyJavaScript.js"></script>
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
-    <script src="~/Scripts/dygraph-combined.js"></script>
+    @RenderSection("myScripts", required:false)
+    @RenderSection("dygraph",required:false)
+
 </body>
 </html>

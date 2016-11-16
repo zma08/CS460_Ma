@@ -9,7 +9,7 @@
                 type: 'GET',
                 url: '/Quote/History',//mapped url by a more meaningful understandable url, it will return the same with Stock/Browse
                 //dataType: 'text',
-                data:{ 'Name': $('#ticker').val()},
+                data : { name : $('#ticker').val()},//json format------name and value pairs
                 
                 success: function (newData) {
                     
@@ -17,7 +17,7 @@
                     var str = "";
                     $.each(newData, function(i, item) {
                         {
-                            tr += "<tr><td>" + item.Date + "</td><td>" + item.Open.toFixed(2) + "</td><td>"+ item.High.toFixed(2) + "</td><td>" + item.Low.toFixed(2) + "</td><td>" + item.Volume + "</td><td>" + item.Close.toFixed(2) + "</td><td>" + item.AdjClose.toFixed(2) + "</td></tr>";
+                            tr += "<tr><td>" + item.Date.toString() + "</td><td>" + item.Open.toFixed(2) + "</td><td>"+ item.High.toFixed(2) + "</td><td>" + item.Low.toFixed(2) + "</td><td>" + item.Volume + "</td><td>" + item.Close.toFixed(2) + "</td><td>" + item.AdjClose.toFixed(2) + "</td></tr>";
                         }
                     
                     });
