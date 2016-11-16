@@ -30,10 +30,16 @@ namespace Adventure14.Controllers
             {
                 //download the pagelist.mvc, it will help to generate the page in a better format
                 return View(db.Products.Where(pk => pk.ProductSubcategoryID == id).
-                    ToList().ToPagedList(page??1,6));//double ? if it is null then page will take defual value as 1, the 2nd parameter set 3 which is page size, like there will be 3 rows displayed in that page
+                    ToList().ToPagedList(page ?? 1, 6));//double ? if it is null then page will take defual value as 1, the 2nd parameter set 3 which is page size, like there will be 3 rows displayed in that page
+                //return View(db.Products.Where(x=>x.ProductSubcategoryID==id).ToList().Select(x=> new { Name=x.Name,Color=x.Color,Price=x.ListPrice}).ToList());
             }
            
         }
+        /// <summary>
+        /// Create a strongly typed view with productReview type and with the selected productID and response to user with this form
+        /// </summary>
+        /// <param name="id">ProductID</param>
+        /// <returns> response to user with this form</returns>
         [HttpGet]
         public ActionResult Review(int id)
         {
@@ -43,7 +49,13 @@ namespace Adventure14.Controllers
                 return View(productReview);
             
         }
-           
+
+        /// <summary>
+        ///generate a strongly typed view for the product review, after user input, add a review to this product if pass the validation
+        /// </summary>
+        /// <param name="productReview"></param>
+        /// <returns></returns>
+
         [HttpPost]
         public ActionResult Review(ProductReview productReview)
         {
@@ -61,6 +73,11 @@ namespace Adventure14.Controllers
            
 
         }
+        /// <summary>
+        ///show all the review about this product whose id is passed by the parameter,
+        /// </summary>
+        /// <param name="id">ProductID </param>
+        /// <returns>return 404 bad request if id is a null or return all the reviews with this id</returns>
         public ActionResult Reviews(int? id)
         {
             if (id == null)
