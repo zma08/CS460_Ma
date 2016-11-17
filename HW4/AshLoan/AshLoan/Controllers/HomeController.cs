@@ -25,14 +25,14 @@ namespace AshLoan.Controllers
         /// receiving user input data from the form by Request.QueryString[key],from the input of the user age and indentify if user is a baby or adult...
         /// </summary>
         /// <returns></returns>
-        public ActionResult Task1()
+        public ActionResult Task1(string fName, string age)
         {
 
             int n;
-            string name = Request.QueryString["fName"];//get user input from querystring from the url
-            string age = Request.QueryString["age"];
+            //string name = Request.QueryString["fName"];//get user input from querystring from the url
+            //string age = Request.QueryString["age"];
             // Debug.WriteLine(Request.Form.Count);//there is not form data at a Http get 
-                if (String.IsNullOrWhiteSpace(name) || !Int32.TryParse(age, out n))//if the input text is empty or white space or the age is not a number or empty return a message to user
+                if (String.IsNullOrWhiteSpace(fName) || !Int32.TryParse(age, out n))//if the input text is empty or white space or the age is not a number or empty return a message to user
                 {
                     ViewBag.message = "please input your name and your age should be a integer";
                 }
@@ -43,19 +43,19 @@ namespace AshLoan.Controllers
                     //pre-build a message, when the user info come in and it will return a message to user
                     if (age0 < 10)
                     {
-                        ViewBag.message = String.Format("Hi {0},you are a baby.", name);
+                        ViewBag.message = String.Format("Hi {0},you are a baby.", fName);
                     }
                     if (age0 < 19 && age0 >= 10)
                     {
-                        ViewBag.message = String.Format("Hi {0},you are a teenager.", name);
+                        ViewBag.message = String.Format("Hi {0},you are a teenager.", fName);
                     }
                     if (age0 < 60 && age0 >= 19)
                     {
-                        ViewBag.message = String.Format("Hi {0},you are an adult.", name);
+                        ViewBag.message = String.Format("Hi {0},you are an adult.", fName);
                     }
                     if (age0 > 60)
                     {
-                        ViewBag.message = String.Format("Hi {0},you are a senior.", name);
+                        ViewBag.message = String.Format("Hi {0},you are a senior.", fName);
                     }
 
                 }
@@ -82,7 +82,6 @@ namespace AshLoan.Controllers
         /// <param name="f"></param>
         /// <returns></returns>
         [HttpPost]//this is http post method, receiving user input data from the form by FormCollection, Form[key], key is name of attribute of the text input
-
         public ActionResult Task2(FormCollection f)
         {
             //NameValueCollection a = Request.Form;
@@ -95,9 +94,9 @@ namespace AshLoan.Controllers
             }
             else
             {
-                if (f["Employed"].Equals("yes"))
+                if ("Employed".Equals("yes"))
                 {
-                    ViewBag.Message = f["Name"]+", working hard is good for you (;";
+                    ViewBag.Message = "Name"+", working hard is good for you (;";
                 }
                 else
                 {
