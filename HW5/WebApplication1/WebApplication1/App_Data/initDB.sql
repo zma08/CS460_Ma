@@ -1,5 +1,5 @@
 -- Create tables and populate with seed data
---    follow naming convention: "Users" table contains rows that are each "User" objects
+--    follow naming convention: "Students" table contains rows that are each "User" objects
 
 -- ***********  Attach ***********
 CREATE DATABASE [Record] ON
@@ -34,7 +34,7 @@ CREATE TABLE [dbo].[Students]
 	[Advisor] NVARCHAR (50) NOT NULL,
 	CONSTRAINT [PK_dbo.Students] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
-
+--insert the seed data from csv file format
 BULK INSERT [dbo].[Students]
 	FROM '$(dbdir)\SeedData\Students.csv'		-- VN,FirstName,LastName,Date,Email,PhoneNumber,Major,Minor,Advisor
 	WITH

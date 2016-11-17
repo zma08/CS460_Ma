@@ -6,6 +6,9 @@ using System.Web;
 
 namespace WebApplication1.Models
 {
+    /// <summary>
+    /// Model class with data annotation when add to database only all data type pass the validation
+    /// </summary>
     public class Student
     {
         [Required][Key][Display(Name = "ID")]
