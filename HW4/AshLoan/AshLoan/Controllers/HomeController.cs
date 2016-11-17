@@ -158,6 +158,12 @@ namespace AshLoan.Controllers
                  {
                      return View("Result", c);
                  }*/
+                 //perform the calculation
+                double r = c.rate / 1200;
+                double principal = c.pr;
+                int n = c.term;
+                c.payment= Math.Round(principal * r * (Math.Pow((1 + r), n)) / (Math.Pow((1 + r), n) - 1), 2);
+                c.total = Math.Round(n * c.payment, 2);
                 return View("Result", c);//if all constrain are satisfied the new ViewResult called Result will be sent to user with model object
 
             }

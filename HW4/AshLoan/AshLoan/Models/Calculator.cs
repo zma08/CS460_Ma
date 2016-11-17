@@ -21,5 +21,6 @@ namespace AshLoan.Models
         public int term { get; set; }
 
         public double payment { get; set; }
+        public double total { get; set; }   
     }
 }
