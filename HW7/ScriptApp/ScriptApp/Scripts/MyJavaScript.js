@@ -44,10 +44,16 @@
                 type: 'GET',
                 url: '/Stock/Browse',
                 data: { 'Name': $('#ticker').val() },
-                dataType: 'text',
+                dataType: 'json',
                 success: function(newData) {
-                    console.log('success',newData);
-                    $area.html(newData);
+                   console.log('success', newData);
+                   $area.html(JSON.stringify(newData));
+                   var g = new Dygraph($area,newData,
+                   {
+                       customBars: true,
+                       logscale: true
+                   });
+
                 },
             error: function(newData1) {
                 alert("error when loading...");

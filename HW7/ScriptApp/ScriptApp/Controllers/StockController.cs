@@ -69,8 +69,7 @@ namespace ScriptApp.Controllers
             var source = data.Replace("\r", "").Split('\n');// replace the return character with empty character and splict the string into array by new line character
            // Debug.WriteLine("initial array size: "+source.Length);
             List<string[]> list = new List<string[]>();//create a list hold string array
-            List<StockInfo> InfoList = new List<StockInfo>();//create a list for model class
-            
+            List<dynamic> InfoList = new List<dynamic>();
             foreach (var s in source)
             {
                 Debug.WriteLine("each String of initial array: "+s);
@@ -84,22 +83,32 @@ namespace ScriptApp.Controllers
              list.RemoveAt(0);
             // Debug.Write(list.Count);
             // Debug.WriteLine(list[1].Length);
-
+            
             foreach (var listItem in list)
             {
                 //object initializer to create object with the data in the array and add all object to the InfoList
-                StockInfo si = new StockInfo
+
+                //StockInfo si = new StockInfo
+                //{
+                //    Date = listItem[0],// Debug.Write(listItem[0]);
+                //    Open = Convert.ToDecimal(listItem[1]), // Debug.Write(listItem[1]);
+                //    High = Convert.ToDecimal(listItem[2]), //Debug.Write(listItem[2]);
+                //    Low = Convert.ToDecimal(listItem[3]), // Debug.Write(listItem[3]);
+                //    Close = Convert.ToDecimal(listItem[4]), //Debug.Write(listItem[4]);
+                //    Volume = Convert.ToInt64(listItem[5]), //Debug.Write(listItem[5]);
+                //    AdjClose = Convert.ToDecimal(listItem[6]) //Debug.Write(listItem[6]);
+                //};
+
+                var si = new
                 {
-                    Date = listItem[0],// Debug.Write(listItem[0]);
-                    Open = Convert.ToDecimal(listItem[1]), // Debug.Write(listItem[1]);
-                    High = Convert.ToDecimal(listItem[2]), //Debug.Write(listItem[2]);
-                    Low = Convert.ToDecimal(listItem[3]), // Debug.Write(listItem[3]);
-                    Close = Convert.ToDecimal(listItem[4]), //Debug.Write(listItem[4]);
-                    Volume = Convert.ToInt64(listItem[5]), //Debug.Write(listItem[5]);
-                    AdjClose = Convert.ToDecimal(listItem[6]) //Debug.Write(listItem[6]);
+                    Date = listItem[0],
+                    Open = Convert.ToDecimal(listItem[1]),
+                    High = Convert.ToDecimal(listItem[2]),
+                    Low = Convert.ToDecimal(listItem[3]),
+                    Close = Convert.ToDecimal(listItem[4]),
+                    Volume = Convert.ToInt64(listItem[5]),
+                    AdjClose = Convert.ToDecimal(listItem[6])
                 };
-
-
                 InfoList.Add(si);
             }
 
