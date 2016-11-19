@@ -10,7 +10,7 @@ using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using System.Web.UI.WebControls;
-using ScriptApp.Models;
+//using ScriptApp.Models;
 
 namespace ScriptApp.Controllers
 {
@@ -19,7 +19,7 @@ namespace ScriptApp.Controllers
         
 
         [HttpGet]
-        public JsonResult Browse(string Name)
+        public JsonResult Browse(string name)
         {
             using (LogInfoContext db = new LogInfoContext())
            {
@@ -49,7 +49,7 @@ namespace ScriptApp.Controllers
                 }
                 
             }
-            //Debug.Write("stock name: "+Name);
+            Debug.Write("stock name: "+name);
             //string csvPath = "C:\\Users\\mazhe\\Documents\\cs460\\HW7\\ScriptApp\\ScriptApp\\App_Data\\chart.csv";
             //using (var c = new WebClient())//download the file we need from specified url below with a stock symbol passed from my index page which is user input by jQuery $().val()
             //{
@@ -60,7 +60,7 @@ namespace ScriptApp.Controllers
             string data;
             using (var c = new WebClient())//download the file/data we need from specified url below
             {
-                 data = c.DownloadString("http://chart.finance.yahoo.com/table.csv?s=" + Name + "&a=9&b=13&c=2016&d=10&e=13&f=2016&g=d&ignore=.csv");//it is REST based API, and quite easy to download and parse the data once data has been downloaded.
+                 data = c.DownloadString("http://chart.finance.yahoo.com/table.csv?s=" + name + "&a=9&b=13&c=2016&d=10&e=13&f=2016&g=d&ignore=.csv");//it is REST based API, and quite easy to download and parse the data once data has been downloaded.
             }
 
             //var AllText = System.IO.File.ReadAllText(csvPath);//read this file with an absolute directory into a string(convert data to string)

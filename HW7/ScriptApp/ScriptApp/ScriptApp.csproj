@@ -99,10 +99,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\LogInfo.mdf" />
-    <Content Include="App_Data\LogInfo_log.ldf">
-      <DependentUpon>LogInfo.mdf</DependentUpon>
-    </Content>
+    <Content Include="App_Data\LogInfo.sql" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
@@ -111,6 +108,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\dygraph-combined-dev.js" />
     <Content Include="Scripts\dygraph-combined.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -125,14 +123,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="CallerInfo.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StockController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CallerInfo.cs" />
-    <Compile Include="Models\LogInfoContext.cs" />
-    <Compile Include="Models\StockInfo.cs" />
+    <Compile Include="LogInfoContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -152,6 +149,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Models\" />
     <Folder Include="Views\Stock\" />
   </ItemGroup>
   <PropertyGroup>

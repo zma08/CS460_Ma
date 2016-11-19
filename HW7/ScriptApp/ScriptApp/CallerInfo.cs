@@ -5,11 +5,14 @@ namespace ScriptApp
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
-    using ScriptApp.Models;
+
     public partial class CallerInfo
     {
+        [Key]
+        [Required]
         public int Id { get; set; }
 
+        [Required]
         [Column(TypeName = "datetime2")]
         public DateTime TimeStamp { get; set; }
 

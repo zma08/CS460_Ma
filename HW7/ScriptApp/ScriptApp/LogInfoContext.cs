@@ -4,7 +4,7 @@ namespace ScriptApp
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
-    using ScriptApp.Models;
+
     public partial class LogInfoContext : DbContext
     {
         public LogInfoContext()

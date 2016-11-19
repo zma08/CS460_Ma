@@ -1,15 +1,16 @@
 ﻿$(document).ready(function() {
-
+    
     $('#browse').on('click',function (e) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
+       
         $area = $('#show');
-      
+        var name = $('#ticker').val();
+        console.log(name);
             $.ajax({
                 type: 'GET',
                 url: '/Quote/History',//mapped url by a more meaningful understandable url, it will return the same with Stock/Browse
-                //dataType: 'text',
-                data : { name : $('#ticker').val()},//json format------name and value pairs
+                data: {name: name},
+                dataType: 'json',
+               //json format------name and value pairs
                 
                 success: function (newData) {
                     
@@ -24,7 +25,7 @@
                     str =
                       "<table class='table table-bordered>td table-striped table-hover'><th>Date</th><th>Open</th><th>High</th><th>Low</th><th>Volume</th><th>Close</th><th>Adj Close</th>" +tr+"</table>";
                     $area.html(str);
-                    console.log('success', newData[0]);
+                    console.log('success', newData);
                 },
 
                 error: function () {
@@ -36,25 +37,42 @@
     });
 
     $('#research').on('click', function(e) {
-        $area = $('#show');
-
+       // $area = $('#show');
+        var name = $('#ticker').val();
         e.preventDefault();
-        e.stopImmediatePropagation();
+       
             $.ajax({
                 type: 'GET',
-                url: '/Stock/Browse',
-                data: { 'Name': $('#ticker').val() },
-                dataType: 'json',
-                success: function(newData) {
-                   console.log('success', newData);
-                   $area.html(JSON.stringify(newData));
-                   var g = new Dygraph($area,newData,
-                   {
-                       customBars: true,
-                       logscale: true
-                   });
+                url: '/Quote/History/',
+                data: { name: name },
+                dataType:'json',
+                success: function(Data) {
+                   // console.log('success', JSON.stringify(Data));
+                    console.log("length array", Data.length);
+                 
+                   
+                    g = new Dygraph(document.getElementById('show'),Data,
+                        {
+                            
+                            
+                            axes:{
+                                 x: {
+                                        valueFormatter: Dygraph.dateString_,
+                                        axisLabelFormatter: Dygraph.dateAxisFormatter,
+                                        ticker: Dygraph.dateTicker
+                                    }
+                                }
+                        },
+                     
+                    {
+                        // options go here. See http://dygraphs.com/options.html
+                        legend: 'always',
+                        animatedZooms: true,
+                        title: 'dygraphs chart template'
+                    });
 
                 },
+                
             error: function(newData1) {
                 alert("error when loading...");
             }
