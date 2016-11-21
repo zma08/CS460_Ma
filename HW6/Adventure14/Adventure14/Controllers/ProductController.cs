@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Diagnostics;
-using System.Linq;  
+using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -17,12 +17,12 @@ namespace Adventure14.Controllers
         // GET: Product
         public ActionResult Index()
         {
-            
+
             return View(db.ProductCategories.ToList());
         }
         public ActionResult ProductItem(int? id, int? page)
         {
-            if (id==null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -33,7 +33,7 @@ namespace Adventure14.Controllers
                     ToList().ToPagedList(page ?? 1, 6));//double ? if it is null then page will take defual value as 1, the 2nd parameter set 3 which is page size, like there will be 3 rows displayed in that page
                 //return View(db.Products.Where(x=>x.ProductSubcategoryID==id).ToList().Select(x=> new { Name=x.Name,Color=x.Color,Price=x.ListPrice}).ToList());
             }
-           
+
         }
         /// <summary>
         /// Create a strongly typed view with productReview type and with the selected productID and response to user with this form
@@ -43,11 +43,11 @@ namespace Adventure14.Controllers
         [HttpGet]
         public ActionResult Review(int id)
         {
-            
-                ProductReview productReview = new ProductReview();
-                productReview.ProductID = id;
-                return View(productReview);
-            
+
+            ProductReview productReview = new ProductReview();
+            productReview.ProductID = id;
+            return View(productReview);
+
         }
 
         /// <summary>
@@ -59,18 +59,23 @@ namespace Adventure14.Controllers
         [HttpPost]
         public ActionResult Review(ProductReview productReview)
         {
+
             if (ModelState.IsValid)
             {
-                db.ProductReviews.Add(productReview);
-                db.SaveChanges();
-               // Debug.WriteLine(productReview.ReviewerName);
-                return View("Thanks",productReview);
-            }
-            else
-            {
-                return View(productReview);
-            }
-           
+                try
+                {
+                    db.ProductReviews.Add(productReview);
+                    db.SaveChanges();
+                    // Debug.WriteLine(productReview.ReviewerName);
+                    return View("Thanks", productReview);
+                }
+                catch (Exception)
+                {
+                    ModelState.AddModelError("", "Unable to save the changes");
+                }
+            }              
+
+            return View(productReview);
 
         }
         /// <summary>
@@ -87,7 +92,7 @@ namespace Adventure14.Controllers
             else
             {
                 var r = db.ProductReviews.Where(x => x.ProductID == id).ToList();
-                if (r.Count==0)
+                if (r.Count == 0)
                 {
                     ViewBag.message = "Sorry there is currently no review for this product...";
                 }
@@ -102,7 +107,7 @@ namespace Adventure14.Controllers
 
         public ActionResult ProductDetail(int? id, int? Mid)
         {
-            if (id==null||Mid==null)
+            if (id == null || Mid == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -128,37 +133,48 @@ namespace Adventure14.Controllers
 
         public ActionResult DeleteCategory(string Name)
         {
-           ProductCategory productCategory = db.ProductCategories.Where(x => x.Name.Equals(Name)).FirstOrDefault();
+            ProductCategory productCategory = db.ProductCategories.Where(x => x.Name.Equals(Name)).FirstOrDefault();
             db.ProductCategories.Remove(productCategory);
             db.SaveChanges();
             return View(db.ProductCategories.ToList());
         }
 
-      
-       /* public ActionResult Add()
+        /// <summary>
+        /// Free up resources once we are done with it, close up the context instance when the job is done.
+        /// </summary>
+        /// <param name="disposing"></param>
+        protected override void Dispose(bool disposing)
         {
-            return View();
+            db.Dispose();
+            base.Dispose(disposing);
         }
 
-        [HttpPost]
-        public ActionResult Add(ProductCategory productCategory)
-        {
-            if (ModelState.IsValid)
-            {
-                db.ProductCategories.Add(productCategory);
-                db.SaveChanges();
-                return RedirectToAction("Show");
-            }
-            else
-            {
-                return View(productCategory);
-            }
-        }
-        public ActionResult Show()
-        {
-           
-            return View(db.ProductCategories.ToList());
-        }*/
+
+        /* public ActionResult Add()
+         {
+             return View();
+         }
+
+         [HttpPost]
+         public ActionResult Add(ProductCategory productCategory)
+         {
+             if (ModelState.IsValid)
+             {
+                 db.ProductCategories.Add(productCategory);
+                 db.SaveChanges();
+                 return RedirectToAction("Show");
+             }
+             else
+             {
+                 return View(productCategory);
+             }
+         }
+         public ActionResult Show()
+         {
+
+             return View(db.ProductCategories.ToList());
+         }*/
 
     }
+
 }
