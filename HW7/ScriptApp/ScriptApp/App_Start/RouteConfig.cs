@@ -14,6 +14,12 @@ namespace ScriptApp
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "whatever1",
+                url: "Quote/Chart",//mapping the url and assign a more meaningful url
+                defaults: new { controller = "Stock", action = "Browse1", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "whatever",
                 url: "Quote/History",//mapping the url and assign a more meaningful url
                 defaults: new { controller = "Stock", action = "Browse", id = UrlParameter.Optional }
