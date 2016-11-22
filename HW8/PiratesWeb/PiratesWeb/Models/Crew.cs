@@ -8,6 +8,7 @@ namespace PiratesWeb
 
     public partial class Crew
     {
+        [Key]
         public int Id { get; set; }
 
         public int ShipId { get; set; }

@@ -15,9 +15,9 @@
                 var tblstr;
                 $.each(Data, function (i, item)
                 {
-                    str +='<tr><td class= "text-center">'+item.pirate+'</td><td class= "text-center">'+item.booty+'</td></tr>'
+                    str +='<tr><td class= "text-center text-danger">'+item.pirate+'</td><td class= "text-center text-danger">'+item.booty+'</td></tr>'
                 });
-                tblstr = '<table class="table-bordered:th table-striped">' + str + '</table>';
+                tblstr = '<table class="table-bordered:th"><tr><th class= "text-center text-danger">Name</th><th class= "text-center text-danger">Botty Total</th></tr>' + str + '</table>';
                 $('#bootyDiv').html(tblstr);
             },
             error: function()
@@ -27,5 +27,8 @@
            
         });
         return false;
-});
+    });
+    $(document).click(function () {
+        $('#bootyDiv').html('');
+    });
 });

@@ -1,5 +1,9 @@
-namespace PirateApp.Models
+using System;
+using System.ComponentModel.DataAnnotations;
+
+namespace PiratesWeb
 {
+    using CustomDataAnnotations;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -14,18 +18,33 @@ namespace PirateApp.Models
             Crews = new HashSet<Crew>();
         }
 
-        [Key]      
         public int Id { get; set; }
 
         [Required]
         [StringLength(50)]
         public string Name { get; set; }
 
+        [CurrentDate(ErrorMessage="Date needs to be before or eaqual to current date")]
         [Column(TypeName = "datetime2")]
-        [Required]
         public DateTime Date { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Crew> Crews { get; set; }
+    }
+}
+namespace CustomDataAnnotations
+{
+    public class CurrentDateAttribute:ValidationAttribute
+    {
+        public CurrentDateAttribute()
+        {
+
+        }
+
+        public override bool IsValid(object value)
+        {
+            var date = (DateTime)value;
+            return (date <= System.DateTime.Now) ? true : false;
+        }
     }
 }

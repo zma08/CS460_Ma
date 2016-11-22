@@ -69,7 +69,7 @@ namespace PiratesWeb.Controllers
         public ActionResult Edit(int? id, Pirate pirate, DateTime Date)
         {
             if (id == null)  return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            if (System.DateTime.Now < Date) { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); return View("ShowPirates"); }
+            //if (System.DateTime.Now < Date) { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); return View("ShowPirates"); }
           
             Pirate p = db.Pirates.Find(id);
             if (TryUpdateModel(p, "", new string[] { "Name", "Date" }))

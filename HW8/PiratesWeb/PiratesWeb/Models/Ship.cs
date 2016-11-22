@@ -13,7 +13,7 @@ namespace PiratesWeb
         {
             Crews = new HashSet<Crew>();
         }
-
+        [Key]
         public int Id { get; set; }
 
         [Required]
