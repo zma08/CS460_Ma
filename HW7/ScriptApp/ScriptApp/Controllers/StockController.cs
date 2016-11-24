@@ -194,9 +194,11 @@ namespace ScriptApp.Controllers
             }
             list.RemoveAt(0);
             var v = "Date, Volume\n";
+            var csvStr = "Date, Open, High, Low, Close, AdjClose\n";
             foreach (var listItem in list)
             {
                 v += listItem[0] + ", " + listItem[5] + "\n";
+                csvStr += listItem[0] + ", " + listItem[1] + ", " + listItem[2] + ", " + listItem[3] + ", " + listItem[4] + ", " + listItem[6]+"\n";
                 //var si = new
                 //{
                 //    Date = listItem[0],
@@ -215,7 +217,7 @@ namespace ScriptApp.Controllers
             {
                 validationMessage = validSymbol == true ? "" : "Stock Symbol is invalid",
                 symbol = name,
-                csvData = data,
+                csvData = csvStr,
                 volume = v
             };
             //JavaScriptSerializer serializer = new JavaScriptSerializer();
