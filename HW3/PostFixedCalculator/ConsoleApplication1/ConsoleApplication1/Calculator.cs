@@ -12,13 +12,13 @@ namespace PostFixedCalculator
             bool play = true;
             while (play)//the calculate is a loop till user want to quit
             {
-                play = app.doCalculation();
+                play = app.DoCalculation();
             }
 
             Console.Write("bye...");
         }
 
-        private Boolean doCalculation()
+        private Boolean DoCalculation()
         {
             Console.WriteLine("please enter q to quit");
             string input = "2 2 +";
@@ -29,7 +29,7 @@ namespace PostFixedCalculator
             String output = "4";
             try
             {
-                output = ePostFixInput(input);
+                output = EPostFixInput(input);
             }
             catch (ArgumentException e)
             {
@@ -42,12 +42,12 @@ namespace PostFixedCalculator
             return true;
         }
 
-        private string ePostFixInput(string input)
+        private string EPostFixInput(string input)
         {
             if (input.Equals(" ") || input == null) //if user input is empty program will catch it as a exception
             { throw new ArgumentException(); }
             // make sure start the calculation with a clear stack
-            stack.clear();
+            stack.Clear();
             //String.split(char del) will convert a string to an array holds string
             string[] inputStr = input.Split(' ');
             int i = inputStr.Length;// tracking the length of array
@@ -60,16 +60,16 @@ namespace PostFixedCalculator
             {
                 string test = inputStr[l - i];// start checking from the first element of the array
                 if (Double.TryParse(test, out d))//try to parse the string to a double by Double.TryParse(string, out double) will return a boolean
-                { stack.push(Convert.ToDouble(test)); }//if double confirmed then push it to our stack
+                { stack.Push(Convert.ToDouble(test)); }//if double confirmed then push it to our stack
                 else//if it is not a number then it should be a operator + - * /...
                 {
                     if (test.Length > 1) { throw new ArgumentException(); }//if it is a oprator then its length should be 1 or it is not an operator then throw
-                    if (stack.isEmpty()) { throw new ArgumentException(); }//if it is a operator then we need number in our stack if there is no number to be operated then throw
-                    a = Convert.ToDouble(stack.pop());//if there is number in stack pop it up
-                    if (stack.isEmpty()) { throw new ArgumentException(); }//we at least need to 2 number in the stack to operated or throw
-                    b = Convert.ToDouble(stack.pop());//pop the second number
+                    if (stack.IsEmpty()) { throw new ArgumentException(); }//if it is a operator then we need number in our stack if there is no number to be operated then throw
+                    a = Convert.ToDouble(stack.Pop());//if there is number in stack pop it up
+                    if (stack.IsEmpty()) { throw new ArgumentException(); }//we at least need to 2 number in the stack to operated or throw
+                    b = Convert.ToDouble(stack.Pop());//pop the second number
 
-                    stack.push(toCal(b, a, test));//do the calculation and push it back to the stack and repeat
+                    stack.Push(ToCal(b, a, test));//do the calculation and push it back to the stack and repeat
 
 
                 }
@@ -77,9 +77,9 @@ namespace PostFixedCalculator
                 i--;//moving to the next string in the array/input
             }
 
-            return stack.pop().ToString();//eventully pop the number from the stack and it's the result
+            return stack.Pop().ToString();//eventully pop the number from the stack and it's the result
         }
-        private double toCal(double a, double b, string c)
+        private double ToCal(double a, double b, string c)
         {
             double s = 0.0;
             if (c == "+") { s = a + b; }

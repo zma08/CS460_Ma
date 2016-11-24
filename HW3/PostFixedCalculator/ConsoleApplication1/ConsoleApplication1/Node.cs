@@ -17,6 +17,8 @@ namespace PostFixedCalculator
             next = null;
         }
 
+       
+
         public Node(Object data, Node next)
         {
             this.data = data;

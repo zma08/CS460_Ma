@@ -13,7 +13,7 @@ namespace PostFixedCalculator
         * @param newItem The object to push onto the top of the stack.  Should not be null
         * @return A reference to the object that was pushed, or null if newItem == null
         */
-        Object push(Object newItem);
+        Object Push(Object newItem);
 
 
         /**
@@ -24,7 +24,7 @@ namespace PostFixedCalculator
         * 			the stack is empty
         */
 
-        Object pop();
+        Object Pop();
 
 
         /**
@@ -34,14 +34,14 @@ namespace PostFixedCalculator
         * @return A reference to the item currently on the top of the stack or null if
         * 			the stack is empty
         */
-        Object peek();
+        Object Peek();
 
         /**
         * Query the stack to see if it is empty or not. Cannot produce an error.
         * @return True if the stack is empty, false otherwise
         */
 
-        Boolean isEmpty();
+        Boolean IsEmpty();
 
 
         /**
@@ -49,7 +49,7 @@ namespace PostFixedCalculator
         * the stack is up to the implementor. The user should pay attention to what 
         * this behavior is.
         */
-        void clear();
+        void Clear();
 
 
     }

@@ -11,22 +11,22 @@ namespace PostFixedCalculator
         {
             top = null; //empty stack 
         }
-        public void clear()
+        public void Clear()
         {
             top = null;
         }
 
-        public bool isEmpty()
+        public bool IsEmpty()
         {
             return (top == null ? true : false);
         }
 
-        public Object peek()
+        public Object Peek()
         {
-            return (isEmpty() ? null : top.data);
+            return (IsEmpty() ? null : top.data);
         }
 
-        public Object pop()
+        public Object Pop()
         {
             if (top == null) { return null; }
             Object item = top.data;
@@ -34,7 +34,7 @@ namespace PostFixedCalculator
             return item;
         }
 
-        public Object push(Object newItem)
+        public Object Push(Object newItem)
         {
             if (newItem == null) { return null; }
             Node aNode = new Node(newItem, top);
