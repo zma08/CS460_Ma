@@ -6,6 +6,11 @@ go
 use[Psc];
 go
 
+alter table [dbo].[Crews]
+drop constraint [fk_dbo.Crews_dbo.Ships_Id],	
+	constraint[fk_dbo.Crews_dbo.Pirates_Id]; 
+
+
 if OBJECT_ID ('dbo.Pirates') is not null
 drop table [dbo].[Pirates];
 
@@ -44,12 +49,3 @@ create table [dbo].[Crews]
 	constraint[fk_dbo.Crews_dbo.Pirates_Id] foreign key([PirateId]) references [dbo].[Pirates]([Id])
 );
 
---detach--
-use master
-go
-
-----set the database in single user mode
-alter database [Psc] set single_user with rollback immediate
-go
-
-exec sp_detach_db 'Psc','true'
