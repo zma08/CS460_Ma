@@ -41,12 +41,15 @@ namespace Adventure14.Controllers
         /// <param name="id">ProductID</param>
         /// <returns> response to user with this form</returns>
         [HttpGet]
-        public ActionResult Review(int id)
+        public ActionResult Review(int id)//debset.create
         {
 
-            ProductReview productReview = new ProductReview();
-            productReview.ProductID = id;
-            return View(productReview);
+            //ProductReview productReview = new ProductReview();
+            //productReview.ProductID = id;
+            //return View(productReview);
+            ProductReview pr = db.ProductReviews.Create();
+            pr.ProductID = id;
+            return View(pr);
 
         }
 
@@ -115,13 +118,9 @@ namespace Adventure14.Controllers
             {
                 var vm = new ProductDescriptionViewModel();
                 ProductDescription description = new ProductDescription();
-                if (db.ProductModelProductDescriptionCultures.Where(pk => pk.ProductModelID == Mid).FirstOrDefault() ==
-                    null) description = null;
-                else
-                {
-                    description = db.ProductModelProductDescriptionCultures.Where(pk => pk.ProductModelID == Mid).FirstOrDefault().ProductDescription;
-
-                }
+                var pd = db.ProductModelProductDescriptionCultures.FirstOrDefault(pk => pk.ProductModelID == Mid);
+                 
+                description = (pd == null) ? null : pd.ProductDescription;
                 var Photo = db.ProductProductPhotoes.Where(x => x.ProductID == id).SingleOrDefault().ProductPhoto;
                 var product = db.Products.Where(x => x.ProductID == id).FirstOrDefault();
                 vm.ProductDescription = description;
