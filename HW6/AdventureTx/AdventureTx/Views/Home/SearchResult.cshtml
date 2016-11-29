@@ -1,0 +1,52 @@
+﻿@model IEnumerable<AdventureTx.Models.Product>
+
+@{
+    ViewBag.Title = "SearchResult";
+}
+
+<h2>SearchResult</h2>
+
+<p>
+    @Html.ActionLink("Back to Homepage", "Index")
+</p>
+<table class="table">
+    <tr>      
+               
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.Color)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.ListPrice)
+        </th>
+     
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        
+        <td>@*<text>Model Id is</text>@item.ProductModelID*@
+            @Html.ActionLink(item.Name, "ProductDetail", new { id=item.ProductID, ModelId = 7})
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.Color)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.ListPrice)
+        </td>
+     
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ProductID }) 
+            @Html.ActionLink("Detail", "ProductDetail", new { id = item.ProductID, ModelId = item.ProductModelID })
+            @Html.ActionLink("Delete", "Delete", new { id=item.ProductID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,66 @@
+﻿@using PagedList.Mvc
+@using PagedList
+
+@model IPagedList<AdventureTx.Models.Product>
+
+
+@{
+    ViewBag.Title = "Products";
+}
+
+<h2>Products</h2>
+
+<p>
+    @Html.ActionLink("Back to Homepage", "Index")
+</p>
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.First().Name)
+        </th>
+
+        <th>
+             ProductPhoto
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.First().Color)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.First().ListPrice)
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.ActionLink(item.Name,"ProductDetail",new {id=item.ProductID,ModelId = item.ProductModelID })
+            </td>
+
+            <td>
+               @{ 
+                   var str = Convert.ToBase64String( item.ProductProductPhotoes.FirstOrDefault(x => x.ProductID == item.ProductID).ProductPhoto.ThumbNailPhoto);
+                   var imgstr = String.Format("data: img/gif; base64,{0}",str);
+               }
+                <img src="@imgstr" />
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Color)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.ListPrice)
+            </td>
+
+            
+        </tr>
+    }
+
+</table>
+@Html.PagedListPager(Model,page=>Url.Action("ListItem",new { page}))
