@@ -23,13 +23,13 @@ namespace ScriptApp.Controllers
         {
             using (LogInfoContext db = new LogInfoContext())
             {
-                CallerInfo callerInfo = new CallerInfo
-                {
-                    TimeStamp = DateTime.Now,
-                    CallerIp = HttpContext.Request.UserHostAddress,
-                    CallerAgent = HttpContext.Request.UserAgent,
-                    CallerRequestString = HttpContext.Request.Url.OriginalString,
-                };
+                CallerInfo callerInfo = db.CallerInfoes.Create();
+                
+                    callerInfo.TimeStamp = DateTime.Now;
+                    callerInfo.CallerIp = HttpContext.Request.UserHostAddress;
+                    callerInfo.CallerAgent = HttpContext.Request.UserAgent;
+                    callerInfo.CallerRequestString = HttpContext.Request.Url.OriginalString;
+               
                 if (ModelState.IsValid)
                 {
                     Debug.WriteLine(callerInfo.TimeStamp);
