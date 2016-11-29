@@ -200,7 +200,7 @@ namespace PiratesWeb.Controllers
         /// dispose the connection to the database
         /// </summary>
         /// <param name="disposing"></param>
-        protected void dispose(bool disposing)
+        protected override void Dispose(bool disposing)
         {
             db.Dispose();
             base.Dispose(disposing);
