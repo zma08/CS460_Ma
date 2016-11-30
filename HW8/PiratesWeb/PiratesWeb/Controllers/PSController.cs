@@ -94,7 +94,7 @@ namespace PiratesWeb.Controllers
         {
             if (id == null)  return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             //if (System.DateTime.Now < Date) { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); return View("ShowPirates"); }
-          
+            
             Pirate p = db.Pirates.Find(id);
             if (TryUpdateModel(p, "", new string[] { "Name", "Date" }))
             {
