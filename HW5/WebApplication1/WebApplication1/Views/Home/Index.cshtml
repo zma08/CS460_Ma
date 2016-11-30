@@ -5,6 +5,9 @@
 <div class="jumbotron">
     <h1>Online Form</h1>
     <p class="lead">This online form will allow you to change major, minor or advisor.</p>
-    <p><a class="btn btn-danger" href="Home/Add">Start</a></p>
+    <p>
+        @*<a class="btn btn-danger" href="~/Views/Home/Add.cshtml">Start</a>*@
+        @Html.ActionLink("Start","Add","",new { @class = "btn btn-success"})
+    </p>
 </div>
 
