@@ -8,8 +8,10 @@ namespace PostFixedCalculator
 {
     public class Node
     {
-        public Object data;//The payload
-        public Node next;//Reference to the next Node in the chain
+        //public Object data;
+           
+        public Object data{ get; set; } //The payload
+        public Node next { get; set; }//Reference to the next Node in the chain
 
         public Node()
         {
