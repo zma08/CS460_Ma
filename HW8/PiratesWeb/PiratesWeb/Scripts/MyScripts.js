@@ -2,11 +2,11 @@
 {
     $('#pirate').fadeOut(1000).fadeIn(3000);
 
-    $('#booty').on('click', function (e) {
-                
+    $('#booty').on('click', function () {
+        
         $.ajax({
             type: 'GET',
-            url: '/PS/Booty/',
+            url: 'PS/Booty/',
             dataType: 'json',
             success: function (Data)
             {

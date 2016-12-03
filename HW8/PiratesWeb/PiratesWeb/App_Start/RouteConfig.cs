@@ -13,7 +13,12 @@ namespace PiratesWeb
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            
+            routes.MapRoute(
+                name: "custom1",
+                url: "PS/Booty/",
+                defaults: new { controller = "PS", action = "Booty", id = UrlParameter.Optional }
+            );
+
 
             routes.MapRoute(
                 name: "Default",

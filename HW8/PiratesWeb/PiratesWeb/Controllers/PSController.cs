@@ -174,26 +174,32 @@ namespace PiratesWeb.Controllers
         /// <returns></returns>
         public ActionResult Booty()
         {
-            
-            List<dynamic> list = new List<dynamic>();
-            decimal bootyTotal = 0;
-            foreach( var p in db.Pirates.ToList())
-            {
-                foreach(var c in db.Crews.Where(x=>x.PirateId==p.Id).ToList())
-                {
-                    bootyTotal += c.Booty;
-                }
-                var info = new
-                {
-                    pirate = p.Name,
-                    booty = bootyTotal
-                };
-                list.Add(info);                
-            }
-            var sorted = list.OrderByDescending(x => x.booty).ToList();
-            return Json(sorted,JsonRequestBehavior.AllowGet);
-           
-          
+            //sltn----1
+            //List<dynamic> list = new List<dynamic>();
+            //decimal bootyTotal = 0;
+            //foreach (var p in db.Pirates.ToList())
+            //{
+            //    foreach (var c in db.Crews.Where(x => x.PirateId == p.Id).ToList())
+            //    {
+            //        bootyTotal += c.Booty;
+            //    }
+            //    var info = new
+            //    {
+            //        pirate = p.Name,
+            //        booty = bootyTotal
+            //    };
+            //    list.Add(info);
+            //}
+            //var sorted = list.OrderByDescending(x => x.booty).ToList();
+
+
+            //sltn----2
+            var sorted = db.Pirates.ToList().Select(p => new { pirate = p.Name, booty = p.Crews.Select(c => c.Booty).Sum() }).OrderByDescending(p => p.booty).ToList();
+            //sltn-----3
+            //var list = db.Crews.GroupBy(c => c.PirateId).ToList();
+            //var sorted = list.Select(x => new { pirate = x.First().Pirate.Name, booty = x.Sum(c => c.Booty) }).OrderByDescending(x=>x.booty).ToList();
+            return Json(sorted, JsonRequestBehavior.AllowGet);
+
         }
 
         /// <summary>
