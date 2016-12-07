@@ -1,14 +1,23 @@
-﻿@{
+﻿@model IEnumerable<FinalEx.Models.Genre>
+
+@{
     ViewBag.Title = "Home Page";
 }
 
 <div class="jumbotron">
-    <h1>Final</h1>
-    <p class="lead">Having some fun</p>
-    <input id="check" type="submit" class="btn btn-success" value="check script" />
+    <h1>Hey You Welcome to the Artists Worlds</h1>
+    <p class="lead">Having some fun here</p>
+   
+   @foreach (var item in Model)
+   {
+    <button id="@item.Name" class="btn btn-success btn-lg">@item.Name</button>
+
+   }
 </div>
+
+
 <div id="show"></div>
-    @section MyScripts
+@section MyScripts
 {
-        <script src="~/Scripts/MyScripts.js"></script>
-    }
+    <script src="~/Scripts/MyScripts.js"></script>
+}

@@ -5,162 +5,170 @@ using System.Web;
 using System.Web.Mvc;
 using PagedList;
 using PagedList.Mvc;
+using FinalEx.Models;
+using System.Net;
+using System.Diagnostics;
+
 namespace FinalEx.Controllers
 {
     public class HomeController : Controller
     {
-
+        ArtContext db = new ArtContext();
         public ActionResult Index()
+        {
+            return View(db.Genres.ToList());
+        }
+       
+        //List 
+        [HttpGet]
+        public ActionResult ShowArtists()
+        {
+
+            return View(db.Artists.ToList());//the nullable page defualt will be set as 1 and page size is 3 since
+        }
+
+        public ActionResult ShowGenres()
+        {
+
+            return View(db.Genres.ToList());//the nullable page defualt will be set as 1 and page size is 3 since
+        }
+
+        [HttpGet]
+        public ActionResult ShowArtWorks()
+        {
+
+            return View(db.ArtWorks.ToList());//the nullable page defualt will be set as 1 and page size is 3 since
+        }
+
+        [HttpGet]
+        public ActionResult ShowClassifications( )
+        {
+
+            return View(db.Classifications.ToList());//the nullable page defualt will be set as 1 and page size is 3 since
+        }
+        //Create ...
+        [HttpGet]
+        public ActionResult CreateArtist()
         {
             return View();
         }
-        //AContext db = new AContext();
-        //List 
-        //[HttpGet]
-        //public ActionResult ShowA(int? page)
-        //{
 
-        //    return View(db.As.ToList().ToPagedList(page ?? 1, 3));//the nullable page defualt will be set as 1 and page size is 3 since
-        //}
-        //Create ...
-        //[HttpGet]
-        //public ActionResult CreateA()
-        //{
-        //    return View();
-        //}
-        
-        //[HttpPost]
-        //public ActionResult CreateA(A a)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        try
-        //        {
-        //            db.As.Add(a);
-        //            db.SaveChanges();
-        //            return RedirectToAction("ShowA");
-        //        }
-        //        catch (Exception) { ModelState.AddModelError("", "A can not be added"); }
-        //    }
-        //    return View(a);
-        //}
-       
-       
-       
-        //[HttpGet]
-        //public ActionResult Edit(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    A a = db.As.Find(id);
-        //    if (a == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(a);
+        [HttpPost]
+        public ActionResult CreateArtist(Artist a)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    db.Artists.Add(a);
+                    db.SaveChanges();
+                    return RedirectToAction("ShowArtists");
+                }
+                catch (Exception) { ModelState.AddModelError("", "Artist can not be added"); }
+            }
+            return View(a);
+        }
 
-        //}
 
-        //[HttpPost]
-        //public ActionResult Edit(int? id, A a)
-        //{
-        //    if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    //if (System.DateTime.Now < Date) { return ModelState.AddModelError("","The input date is not valid"); }
 
-        //    A a = db.As.Find(id);
-        //    if (TryUpdateModel(p, "", new string[] { "Name", "Date" }))
-        //    {
-        //        try
-        //        {
-        //            db.SaveChanges();
-        //            return RedirectToAction("ShowA");
-        //        }
-        //        catch (Exception) { ModelState.AddModelError("", "Edit failed"); }
-        //    }
-        //    return View(p);
-        //}
-       
+        [HttpGet]
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Artist a = db.Artists.Find(id);
+            if (a == null)
+            {
+                return HttpNotFound();
+            }
+            return View(a);
+
+        }
+
+        [HttpPost]
+        public ActionResult Edit(int? id, Artist a)
+        {
+            if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //if (System.DateTime.Now < Date) { return ModelState.AddModelError("","The input date is not valid"); }
+
+            Artist artist = db.Artists.Find(id);
+            if (TryUpdateModel(artist, "", new string[] { "Name", "BirthDate", "BirthCity" }))
+            {
+                try
+                {
+                    db.SaveChanges();
+                    return RedirectToAction("ShowArtists");
+                }
+                catch (Exception) { ModelState.AddModelError("", "Edit failed"); }
+            }
+            return View(a);
+        }
+
         //Details
-        //public ActionResult Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    A a = db.As.FirstOrDefault(x => x.Id == id);
-        //    if (a == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Artist a = db.Artists.Find(id);
+            if (a == null)
+            {
+                return HttpNotFound();
+            }
 
-        //    return View(a);
-        //}
-        
+            return View(a);
+        }
+
         //Delete
-        //[HttpGet]
-        //public ActionResult Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    A a = db.As.Find(id);
-        //    if (a == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
+        [HttpGet]
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Artist a = db.Artists.Find(id);
+            if (a == null)
+            {
+                return HttpNotFound();
+            }
 
-        //    return View(a);
-        //}
-       
-        //[HttpPost]
-        //public ActionResult Delete(int? id, Pirate pirate)
-        //{
-        //    try
-        //    {
-        //        A a = db.As.Find(id);
-        //        db.As.Remove(a);
-        //        db.SaveChanges();
-        //        return RedirectToAction("ShowAs");
-        //    }
-        //    catch (Exception) { ModelState.AddModelError("", "deletion failed"); }
-        //    return View(a);
-        //}
-        
-        //public ActionResult Booty()
-        //{
+            return View(a);
+        }
 
-        //    List<dynamic> list = new List<dynamic>();
-        //    decimal bootyTotal = 0;
-        //    foreach (var p in db.Pirates.ToList())
-        //    {
-        //        foreach (var c in db.Crews.Where(x => x.PirateId == p.Id).ToList())
-        //        {
-        //            bootyTotal += c.Booty;
-        //        }
-        //        var info = new
-        //        {
-        //            pirate = p.Name,
-        //            booty = bootyTotal
-        //        };
-        //        list.Add(info);
-        //    }
-        //    var sorted = list.OrderByDescending(x => x.booty).ToList();
-        //-------
-        //    var sorted = db.B.GroupBy(x=>x.AId).ToList().Select(g=>new{Name = g.First().A.Name, Booty = g.Sum(c=>c.Booty)}).OrderByDescending(A=>A.Booty).ToList();
-        //    return Json(sorted, JsonRequestBehavior.AllowGet);
+        [HttpPost]
+        public ActionResult Delete(int? id, Artist a)
+        {
+            try
+            {
+                Artist artist = db.Artists.Find(id);
+                db.Artists.Remove(artist);
+                db.SaveChanges();
+                return RedirectToAction("ShowArtists");
+            }
+            catch (Exception) { ModelState.AddModelError("", "deletion failed"); }
+            return View(a);
+        }
+
+        public ActionResult Art(string data)
+        {
+
+            Debug.WriteLine("data: "+data);
+            var jobj = db.Classifications.Where(z => z.GenreName == data).ToList().Select(cl => new { ArtWork = cl.ArtWorkName, Artist = cl.ArtWork.ArtistName }).ToList();
+            return Json(jobj, JsonRequestBehavior.AllowGet);
 
 
-        //}
+        }
 
-       
-        //protected override void Dispose(bool disposing)
-        //{
-        //    db.Dispose();
-        //    base.Dispose(disposing);
-        //}
+
+        protected override void Dispose(bool disposing)
+        {
+            db.Dispose();
+            base.Dispose(disposing);
+        }
 
 
     }
