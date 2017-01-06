@@ -5,12 +5,11 @@
     document.getElementById("Renaissance").addEventListener("click", showMe);
 
     function showMe()
-    {
-        //$('#show').hide();
+    {        
         $.ajax({
                     type:'GET',
                     url: 'Home/Art/',
-                    data: {data:this.attributes["id"].value},
+                    data: {data:this.attributes["id"].value},//asp.net knows the context element, we could retrive this clicked element from key word this
                     dataType:'json',
                     success: function (Data)
                     {
@@ -29,4 +28,4 @@
     }
 });
 
-//$(document).click(function () { $('#show').hide();});
+$(document).click(function () { $('#show').hide();});
