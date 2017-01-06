@@ -17,6 +17,7 @@ namespace PiratesWeb
         public int Id { get; set; }
 
         [Required]
+        [Display(Name="Ship Name")]
         [StringLength(20)]
         public string Name { get; set; }
 

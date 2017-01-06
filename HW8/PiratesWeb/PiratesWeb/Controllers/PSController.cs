@@ -194,10 +194,11 @@ namespace PiratesWeb.Controllers
 
 
             //sltn----2
-            var sorted = db.Pirates.ToList().Select(p => new { pirate = p.Name, booty = p.Crews.Select(c => c.Booty).Sum() }).OrderByDescending(p => p.booty).ToList();
-            //sltn-----3
-            //var list = db.Crews.GroupBy(c => c.PirateId).ToList();
-            //var sorted = list.Select(x => new { pirate = x.First().Pirate.Name, booty = x.Sum(c => c.Booty) }).OrderByDescending(x=>x.booty).ToList();
+            //var sorted = db.Pirates.ToList().Select(p => new { pirate = p.Name, booty = p.Crews.Select(c => c.Booty).Sum() }).OrderByDescending(p => p.booty).ToList();
+
+            //sltn---- - 3
+            var list = db.Crews.GroupBy(c => c.PirateId).ToList();
+            var sorted = list.Select(x => new { pirate = x.First().Pirate.Name, booty = x.Sum(c => c.Booty) }).OrderByDescending(x => x.booty).ToList();
             return Json(sorted, JsonRequestBehavior.AllowGet);
 
         }

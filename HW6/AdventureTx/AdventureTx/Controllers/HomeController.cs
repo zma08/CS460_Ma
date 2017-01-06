@@ -25,9 +25,12 @@ namespace AdventureTx.Controllers
         public ActionResult Index(string search)
         {
             Debug.WriteLine(search);
-            if (String.IsNullOrEmpty(search)) return HttpNotFound();
-            var p = db.Products.Where(x => x.Name.ToUpper().Contains(search.ToUpper())).ToList();
-            return View("SearchResult", p);//render a new view directly with viewResult with a object that filtered, notice that redirectToAction cant not be passed with a object parameter
+            if (!String.IsNullOrEmpty(search))
+            {
+                var p = db.Products.Where(x => x.Name.ToUpper().Contains(search.ToUpper())).ToList();
+                return View("SearchResult", p);
+            }//render a new view directly with viewResult with a object that filtered, notice that redirectToAction cant not be passed with a object parameter
+            return HttpNotFound();
         }
 
         public ActionResult ListItem(int? id, int? page)

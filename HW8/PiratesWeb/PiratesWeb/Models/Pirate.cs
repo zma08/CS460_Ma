@@ -21,6 +21,7 @@ namespace PiratesWeb
         public int Id { get; set; }
 
         [Required]
+        [Display(Name="Pirate Name")]
         [StringLength(50)]
         public string Name { get; set; }
 
@@ -38,7 +39,6 @@ namespace CustomDataAnnotations
     {
         public CurrentDateAttribute()
         {
-
         }
 
         public override bool IsValid(object value)

@@ -29,7 +29,7 @@
                 }
 
 
-                <li>@using (Html.BeginForm()) {<input type="text" name="search" /><input type="submit" value="search Name" />}</li >
+                <li>@using (Html.BeginForm()) {<input type="text" name="search" id="val"/><input type="submit" value="search Name"  id="searchStr"/>}</li >
                 
             </ul>
         </div>
@@ -38,3 +38,6 @@
 <div id="bg">
 <img src="~/Content/outdoor.jpg">
 </div>
+@section MyScripts{
+    <script src="~/Scripts/MyScripts.js"></script>
+    }

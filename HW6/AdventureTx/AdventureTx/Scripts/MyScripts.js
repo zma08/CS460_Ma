@@ -31,4 +31,8 @@
         });
         return false;
     });
+    //$('#searchStr').click(function (e) {
+    //    e.preventDefault();
+    //    if (!$('#val').val()) alert("Please enter a valid product name");
+    //});
 });
